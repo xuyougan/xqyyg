@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星辰科技 - 创新科技解决方案提供商</title>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #165DFF;
+            --secondary: #36CFC9;
+            --dark: #1D2129;
+            --light: #F2F3F5;
+            --gray: #86909C;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --danger: #F53F3F;
+        }
+
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0E42D2;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 导航栏样式 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            padding: 20px 0;
+        }
+
+        header.scrolled {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        header.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header.scrolled .nav-links a {
+            color: var(--dark);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        header.scrolled .mobile-menu-btn {
+            color: var(--dark);
+        }
+
+        /* 英雄区域样式 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://picsum.photos/id/1/1920/1080') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* 特色区域样式 */
+        .features {
+            background-color: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(22, 93, 255, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* 服务区域样式 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .service-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* 评价区域样式 */
+        .testimonials {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .testimonials .section-title h2 {
+            color: var(--white);
+        }
+
+        .testimonials .section-title h2::after {
+            background-color: var(--secondary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .testimonial-card .stars {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+            font-style: normal;
+        }
+
+        /* 联系区域样式 */
+        .contact {
+            background-color: var(--light);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            margin-top: 40px;
+        }
+
+        .social-links h4 {
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(22, 93, 255, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error input {
+            border-color: var(--danger);
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        /* 登录模态框样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--danger);
+        }
+
+        .login-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .login-form input {
+            padding: 12px 15px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+
+        .login-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .login-links a {
+            color: var(--primary);
+            transition: color 0.3s ease;
+        }
+
+        .login-links a:hover {
+            color: #0E42D2;
+            text-decoration: underline;
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .nav-links a {
+                color: var(--dark);
+                font-size: 1.1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1001;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .login-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-star"></i>
+                    星辰科技
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#features">特色</a></li>
+                    <li><a href="#services">服务</a></li>
+                    <li><a href="#testimonials">评价</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                    <li><a href="#" class="btn" id="loginBtn">登录</a></li>
+                </ul>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>创新科技，<br>引领未来生活</h1>
+                <p>我们提供前沿的科技解决方案，助力企业数字化转型，创造更智能的生活方式</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn">了解服务</a>
+                    <a href="#contact" class="btn btn-outline">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色区域 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的特色</h2>
+                <p>专注于为客户提供最优质的服务和解决方案，以下是我们的核心优势</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>创新思维</h3>
+                    <p>我们拥有一支充满创意的团队，不断探索新技术、新方法，为客户提供创新解决方案。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>安全可靠</h3>
+                    <p>安全是我们的首要考虑，所有解决方案都经过严格测试，确保数据和系统的安全可靠。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>高效执行</h3>
+                    <p>我们注重效率，快速响应客户需求，确保项目按时交付，为客户创造最大价值。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务区域 -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们的服务</h2>
+                <p>提供全方位的科技服务，满足不同客户的需求，助力业务增长和数字化转型</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://picsum.photos/id/180/600/400" alt="网站开发">
+                    </div>
+                    <div class="service-content">
+                        <h3>网站开发</h3>
+                        <p>定制化网站设计与开发，打造符合企业形象和需求的专业网站，提升品牌影响力。</p>
+                        <a href="#" class="btn btn-outline">了解更多</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://picsum.photos/id/48/600/400" alt="移动应用开发">
+                    </div>
+                    <div class="service-content">
+                        <h3>移动应用开发</h3>
+                        <p>开发跨平台移动应用，为用户提供流畅的移动体验，拓展业务覆盖范围。</p>
+                        <a href="#" class="btn btn-outline">了解更多</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://picsum.photos/id/160/600/400" alt="云计算服务">
+                    </div>
+                    <div class="service-content">
+                        <h3>云计算服务</h3>
+                        <p>提供云迁移、云托管和云安全服务，降低IT成本，提高业务灵活性和可扩展性。</p>
+                        <a href="#" class="btn btn-outline">了解更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 评价区域 -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>客户评价</h2>
+                <p>来自我们客户的真实反馈，见证我们的服务质量和专业能力</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"星辰科技为我们开发的企业网站超出了预期，设计精美，功能完善，极大地提升了我们的品牌形象和线上业务。"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://picsum.photos/id/64/100/100" alt="客户头像">
+                        </div>
+                        <div class="author-info">
+                            <h4>张明</h4>
+                            <p>某科技公司CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"与星辰科技合作非常愉快，他们的团队专业且高效，为我们定制的移动应用解决了业务痛点，用户反馈极佳。"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://picsum.photos/id/65/100/100" alt="客户头像">
+                        </div>
+                        <div class="author-info">
+                            <h4>李娜</h4>
+                            <p>某电商平台产品经理</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"星辰科技的云计算服务帮助我们降低了IT基础设施成本，同时提高了系统的稳定性和安全性，非常值得推荐。"</p>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="https://picsum.photos/id/91/100/100" alt="客户头像">
+                        </div>
+                        <div class="author-info">
+                            <h4>王强</h4>
+                            <p>某金融机构CTO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系区域 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我们</h2>
+                <p>无论您有任何问题或需求，都可以通过以下方式联系我们，我们将尽快回复</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>联系方式</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>公司地址</h4>
+                            <p>北京市海淀区中关村科技园区8号楼</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>联系电话</h4>
+                            <p>400-123-4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>电子邮箱</h4>
+                            <p>contact@xingchen.tech</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>工作时间</h4>
+                            <p>周一至周五: 9:00 - 18:00</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>关注我们</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">您的姓名</label>
+                            <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" name="email" required placeholder="请输入您的电子邮箱">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">主题</label>
+                            <input type="text" id="subject" name="subject" required placeholder="请输入主题">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容</label>
+                            <textarea id="message" name="message" required placeholder="请输入您的留言内容"></textarea>
+                        </div>
+                        <button type="submit" class="btn">发送留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>星辰科技</h3>
+                    <p>专注于为企业和个人提供高质量的科技解决方案，助力数字化转型，创造更大价值。</p>
+                </div>
+                <div class="footer-col">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#features">特色</a></li>
+                        <li><a href="#services">服务</a></li>
+                        <li><a href="#testimonials">评价</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>服务项目</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">网站开发</a></li>
+                        <li><a href="#">移动应用开发</a></li>
+                        <li><a href="#">云计算服务</a></li>
+                        <li><a href="#">数据分析</a></li>
+                        <li><a href="#">网络安全</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>法律信息</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="#">Cookie政策</a></li>
+                        <li><a href="#">法律声明</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 星辰科技 版权所有 | 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 登录模态框 -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">用户登录</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="loginUsername">用户名</label>
+                    <input type="text" id="loginUsername" name="username" required placeholder="请输入用户名">
+                    <div class="error-message">请输入用户名</div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">密码</label>
+                    <input type="password" id="loginPassword" name="password" required placeholder="请输入密码">
+                    <div class="error-message">请输入密码（至少6位）</div>
+                </div>
+                <button type="submit" class="btn login-btn">登录</button>
+                <div class="login-links">
+                    <a href="#">忘记密码?</a>
+                    <a href="#">注册账号</a>
+                </div>
+                <div class="modal-footer">
+                    登录即表示您同意我们的<a href="#" style="color: var(--primary);">服务条款</a>和<a href="#" style="color: var(--primary);">隐私政策</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 移动菜单切换
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        });
+
+        // 联系表单处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            console.log('表单提交数据:', formData);
+            alert('留言发送成功，我们将尽快与您联系！');
+            this.reset();
+        });
+
+        // 登录模态框功能
+        const loginModal = document.getElementById('loginModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const closeModal = document.getElementById('closeModal');
+
+        // 打开模态框
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 禁止背景滚动
+        });
+
+        // 关闭模态框
+        closeModal.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = ''; // 恢复背景滚动
+            clearLoginErrors();
+        });
+
+        // 点击模态框外部关闭
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('active');
+                document.body.style.overflow = '';
+                clearLoginErrors();
+            }
+        });
+
+        // 登录表单验证与提交
+        const loginForm = document.getElementById('loginForm');
+        const loginUsername = document.getElementById('loginUsername');
+        const loginPassword = document.getElementById('loginPassword');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            // 验证用户名
+            if (!loginUsername.value.trim()) {
+                showError(loginUsername, '请输入用户名');
+                isValid = false;
+            } else {
+                hideError(loginUsername);
+            }
+
+            // 验证密码
+            if (!loginPassword.value) {
+                showError(loginPassword, '请输入密码');
+                isValid = false;
+            } else if (loginPassword.value.length < 6) {
+                showError(loginPassword, '密码长度至少为6位');
+                isValid = false;
+            } else {
+                hideError(loginPassword);
+            }
+
+            // 验证通过，模拟登录
+            if (isValid) {
+                // 模拟加载状态
+                const submitBtn = loginForm.querySelector('.login-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 登录中...';
+
+                // 模拟API请求延迟
+                setTimeout(() => {
+                    // 这里可以替换为实际的登录API请求
+                    console.log('登录信息:', {
+                        username: loginUsername.value,
+                        password: loginPassword.value
+                    });
+
+                    // 模拟登录成功
+                    alert('登录成功！欢迎回来，' + loginUsername.value + '！');
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    loginForm.reset();
+                    
+                    // 恢复按钮状态
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }, 1500);
+            }
+        });
+
+        // 显示错误信息
+        function showError(input, message) {
+            const formGroup = input.parentElement;
+            formGroup.classList.add('error');
+            const errorElement = formGroup.querySelector('.error-message');
+            errorElement.textContent = message;
+        }
+
+        // 隐藏错误信息
+        function hideError(input) {
+            const formGroup = input.parentElement;
+            formGroup.classList.remove('error');
+        }
+
+        // 清除所有错误信息
+        function clearLoginErrors() {
+            const errorGroups = loginForm.querySelectorAll('.form-group.error');
+            errorGroups.forEach(group => group.classList.remove('error'));
+        }
+
+        // 输入时实时验证
+        loginUsername.addEventListener('input', () => {
+            if (loginUsername.value.trim()) {
+                hideError(loginUsername);
+            }
+        });
+
+        loginPassword.addEventListener('input', () => {
+            if (loginPassword.value.length >= 6) {
+                hideError(loginPassword);
+            }
+        });
+    </script>
+</body>
+</html>
